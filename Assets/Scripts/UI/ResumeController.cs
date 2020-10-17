@@ -1,26 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ResumeController : MonoBehaviour
-{
+namespace HuaYang.UI {
+  public class ResumeController : MonoBehaviour {
+    [SerializeField]
+    private GameObject PasueBoard;
+    [SerializeField]
+    private AudioSource ClickSound;
+    [SerializeField]
+    private GameObject PauseButton;
 
-    public GameObject PasueBoard;
-    public AudioSource ClickSound;
-    public GameObject PauseButton;
-    void Start()
-    {
-        Button btn = this.gameObject.GetComponent<Button>();
-        //添加点击侦听
-        btn.onClick.AddListener(Click);
+    private void Start() {
+      Button btn = GetComponent<Button>();
+      //添加点击侦听
+      btn.onClick.AddListener(_Click);
     }
 
-    void Click()
-    {
-        ClickSound.Play();
-        PasueBoard.SetActive(false);
-        PauseButton.SetActive(true);
-        Time.timeScale = 1.0f;
+    private void _Click() {
+      ClickSound.Play();
+      PasueBoard.SetActive(false);
+      PauseButton.SetActive(true);
+      Time.timeScale = 1.0f;
     }
+  }
 }

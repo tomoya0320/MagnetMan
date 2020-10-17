@@ -1,27 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+namespace HuaYang.UI {
+  public class RestartController : MonoBehaviour {
+    [SerializeField]
+    private GameObject PasueBoard;
+    [SerializeField]
+    private AudioSource ClickSound;
 
-
-public class RestartController : MonoBehaviour
-{
-
-    public GameObject PasueBoard;
-    public AudioSource ClickSound;
-    void Start()
-    {
-        Button btn = this.gameObject.GetComponent<Button>();
-        //添加点击侦听
-        btn.onClick.AddListener(Click);
+    private void Start() {
+      Button btn = GetComponent<Button>();
+      //添加点击侦听
+      btn.onClick.AddListener(_Click);
     }
 
-    void Click()
-    {
-        ClickSound.Play();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Time.timeScale = 1.0f;
+    private void _Click() {
+      ClickSound.Play();
+      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+      Time.timeScale = 1.0f;
     }
+  }
 }

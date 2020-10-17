@@ -1,34 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using System;
 using UnityEngine.UI;
 
-public class TitleController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-{
-    public Sprite normal;
-    public Sprite hold;
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        this.GetComponent<Image>().sprite = hold;
+namespace HuaYang.UI {
+  public class TitleController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+    [SerializeField]
+    private Sprite normal;
+    [SerializeField]
+    private Sprite hold;
+    private Image _image;
+    public Image image {
+      get {
+        if (_image == null) {
+          _image = GetComponent<Image>();
+        }
+        return _image;
+      }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        this.GetComponent<Image>().sprite = normal;
+    public void OnPointerEnter(PointerEventData eventData) {
+      image.sprite = hold;
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public void OnPointerExit(PointerEventData eventData) {
+      image.sprite = normal;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  }
 }

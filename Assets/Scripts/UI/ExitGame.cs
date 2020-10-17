@@ -1,22 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-public class ExitGame : MonoBehaviour
-{
-    // Start is called before the first frame update
-    public AudioSource ClickSound;
-    void Start()
-    {
-        Button btn = this.gameObject.GetComponent<Button>();
-        //添加点击侦听
-        btn.onClick.AddListener(Click);
+
+namespace HuaYang.UI {
+  public class ExitGame : MonoBehaviour {
+    [SerializeField]
+    private AudioSource ClickSound;
+
+    private void Start() {
+      Button btn = GetComponent<Button>();
+      //添加点击侦听
+      btn.onClick.AddListener(_Click);
     }
 
-    void Click()
-    {
-        ClickSound.Play();
-        Application.Quit();
+    private void _Click() {
+      ClickSound.Play();
+      Application.Quit();
     }
-
+  }
 }
