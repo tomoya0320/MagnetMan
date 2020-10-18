@@ -1,40 +1,31 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class JumpJudge : MonoBehaviour
-{
-    private Coroutine coroutine; 
-    private PlayerController pc;
-    private Animator anim;
-    private void Start()
-    {
-        anim = transform.parent.GetComponent<Animator>();
-        pc = transform.parent.GetComponent<PlayerController>();
+namespace HuaYang.Battle {
+  public class JumpJudge : MonoBehaviour {
+    private PlayerController m_playerController;
+
+    private void Start() {
+      m_playerController = transform.parent.GetComponent<PlayerController>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (pc.playerState != PlayerState.StoreForce)
-        {
-            JumpMagnet jumpMagnet = collision.GetComponent<JumpMagnet>();
-            Magnet magnet = collision.GetComponent<Magnet>();
-            if (jumpMagnet && magnet)
-            {
-                if (magnet.UpMagneticPole == pc.DownMagneticPole)
-                {
-                    pc.playerState = PlayerState.IsGrounded;
-                }
-            }
-            else
-            {
-                pc.playerState = PlayerState.IsGrounded;
-            }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+      if (m_playerController.playerState != PlayerState.STORE_FORCE) {
+        JumpMagnet jumpMagnet = collision.GetComponent<JumpMagnet>();
+        Magnet magnet = collision.GetComponent<Magnet>();
+        if (jumpMagnet && magnet) {
+          if (magnet.UpMagneticPole == m_playerController.DownMagneticPole) {
+            m_playerController.playerState = PlayerState.IS_GROUNDED;
+          }
+        } else {
+          m_playerController.playerState = PlayerState.IS_GROUNDED;
         }
+      }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (pc.playerState != PlayerState.StoreForce)
-        {
-            pc.playerState = PlayerState.Jumping;
-        }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+      if (m_playerController.playerState != PlayerState.STORE_FORCE) {
+        m_playerController.playerState = PlayerState.JUMPING;
+      }
     }
+  }
 }

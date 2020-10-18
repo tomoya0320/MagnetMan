@@ -136,14 +136,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.28333333
-    functionName: changeAnim
+    functionName: ChangeAnim
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
   - time: 0.28333333
-    functionName: changeMagnet
+    functionName: ChangeMagnet
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
